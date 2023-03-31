@@ -1,9 +1,7 @@
 <template>
-  <v-app>
+  <v-app class="container">
     <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/post">Post</router-link> |
-    <router-link to="/create-post">Create</router-link>
   </div>
   <router-view/>
   </v-app>
@@ -20,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.container {
+  padding: 10px 200px;
+}
+</style>

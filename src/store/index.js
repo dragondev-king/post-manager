@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
+const apiURL = process.env.VUE_APP_BE_URL
+
 export default createStore({
   state: {
     posts: [],
@@ -9,7 +11,6 @@ export default createStore({
   },
   mutations: {
     SET_POSTS(state, payload) {
-      console.log(payload, '========')
       state.posts = payload
     },
     SET_POST(state, payload) {
@@ -22,23 +23,24 @@ export default createStore({
   actions: {
     fetchPosts({ commit }) {
       // Fetch all posts from API or database
-      axios.get('https://jsonplaceholder.typicode.com/posts').then((response) =>commit('SET_POSTS', response.data)) 
+      axios.get(`${apiURL}/posts`).then((response) =>commit('SET_POSTS', response.data)) 
     },
     fetchPost({ commit }, postId) {
       // Fetch selected post from API or database
-      axios.get(`/api/posts/${postId}`).then(response => {
+      axios.get(`${apiURL}/posts/${postId}`).then(response => {
         commit('SET_POST', response.data)
       })
     },
     fetchComments({ commit }, postId) {
       // Fetch comments for selected post from API or database
-      axios.get(`/api/posts/${postId}/comments`).then(response => {
+      axios.get(`${apiURL}/posts/${postId}/comments`).then(response => {
         commit('SET_COMMENTS', response.data)
       })
     },
     createPost({ dispatch }, postData) {
+      console.log(postData, '-=====')
       // Create new post and update store by fetching posts again
-      axios.post('/api/posts', postData).then(() => {
+      axios.post(`${apiURL}/posts`, postData).then(() => {
         dispatch('fetchPosts')
       })
     },
@@ -50,7 +52,7 @@ export default createStore({
     },
     deletePost({ dispatch }, postId) {
       // Delete post and update store by fetching posts again
-      axios.delete(`/api/posts/${postId}`).then(() => {
+      axios.delete(`${apiURL}/posts/${postId}`).then(() => {
         dispatch('fetchPosts')
       })
     }

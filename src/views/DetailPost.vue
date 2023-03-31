@@ -1,14 +1,17 @@
 <template>
   <div>
-    <h1>{{ post.title }}</h1>
+    <h2>Title</h2>
+    <h3>{{ post.title }}</h3>
+    <h2>Description</h2>
     <p>{{ post.body }}</p>
+    <h2>Comments</h2>
     <ul>
       <li v-for="comment in comments" :key="comment.id">
         {{ comment.body }}
       </li>
     </ul>
-    <button @click="editPost">Edit Post</button>
-    <button @click="deletePost">Delete Post</button>
+    <v-btn @click="editPost">Edit Post</v-btn>
+    <v-btn @click="deletePost(post.id)">Delete Post</v-btn>
   </div>
 </template>
 

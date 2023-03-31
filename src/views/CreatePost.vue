@@ -1,31 +1,30 @@
 <template>
-  <div>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.body }}</p>
-    <ul>
-      <li v-for="comment in comments" :key="comment.id">
-        {{ comment.body }}
-      </li>
-    </ul>
-    <button @click="editPost">Edit Post</button>
-    <button @click="deletePost">Delete Post</button>
-  </div>
+  <v-sheet>
+    <h1>Create New Post</h1>
+    <v-form @submit.prevent="createPost({
+      title,
+      body,
+      userId: 1
+    })">
+      <v-text-field v-model="title" label="Title"></v-text-field>
+      <v-textarea label="Body" v-model="body"></v-textarea>
+      <v-btn type="submit">Create Post</v-btn>
+    </v-form>
+  </v-sheet>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
-  computed: {
-    ...mapState(['post', 'comments'])
-  },
-  created() {
-    // Fetch selected post and its comments from API or database using Vuex actions
-    this.$store.dispatch('fetchPost', this.$route.params.id)
-    this.$store.dispatch('fetchComments', this.$route.params.id)
+  data() {
+    return {
+      title: '',
+      body: ''
+    }
   },
   methods: {
-    ...mapActions(['editPost', 'deletePost'])
+    ...mapActions(['createPost'])
   }
 }
 </script>

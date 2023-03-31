@@ -17,12 +17,12 @@ const router = createRouter({
       component: AllPosts
     },
     {
-      path: '/',
+      path: '/post/:id',
       name: 'post',
       component: DetailPost
     },
     {
-      path: '/',
+      path: '/create',
       name: 'create',
       component: CreatePost
     },
