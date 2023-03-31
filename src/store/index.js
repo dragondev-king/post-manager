@@ -5,9 +5,9 @@ const apiURL = process.env.VUE_APP_BE_URL
 
 export default createStore({
   state: {
-    posts: [],
-    post: {},
-    comments: []
+    posts: [], // all the posts
+    post: {},  // a post with specific id
+    comments: []  // commets which a post has
   },
   mutations: {
     SET_POSTS(state, payload) {

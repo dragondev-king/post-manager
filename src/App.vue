@@ -1,10 +1,10 @@
 <template>
   <v-app class="container">
     <div id="nav">
-    <router-link to="/">Home</router-link> |
-  </div>
-  <router-view/>
-  <ActionNotification />
+      <router-link to="/">Home</router-link> |
+    </div>
+    <router-view/>
+    <ActionNotification />
   </v-app>
 </template>
 
@@ -24,6 +24,6 @@ export default {
 
 <style>
 .container {
-  padding: 10px 200px;
+  padding: 10px 400px;
 }
 </style>

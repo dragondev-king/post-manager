@@ -12,10 +12,11 @@
       </li>
     </ul>
     <div class="pt-4">
-      <v-btn  @click="this.$router.push({
-              path: `/post/${post.id}/edit`
-            })">Edit Post</v-btn>
-      <v-btn class="ml-2" @click="handleDelete">Delete Post</v-btn>
+      <v-btn color="success"  @click="this.$router.push({
+          path: `/post/${post.id}/edit`
+        })">Edit
+      </v-btn>
+      <v-btn color="error" class="ml-2" @click="handleDelete">Delete</v-btn>
     </div>
   </div>
 </template>
