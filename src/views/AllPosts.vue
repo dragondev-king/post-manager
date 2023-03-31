@@ -7,7 +7,7 @@
         <tr>
           <th>ID</th>
           <th>Title</th>
-          <th rowspan="2">Actions</th>
+          <th colspan="3">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +16,10 @@
           <td>{{ post.title }}</td>
           <td><v-btn @click="this.$router.push({
             path: `/post/${post.id}`
-          })">View Detail</v-btn></td>
+          })">View</v-btn></td>
+          <td><v-btn @click="this.$router.push({
+            path: `/post/${post.id}/edit`
+          })">Edit</v-btn></td>
           <td><v-btn @click="deletePost(post.id)">Delete</v-btn></td>
         </tr>
       </tbody>

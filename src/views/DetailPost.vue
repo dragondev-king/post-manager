@@ -10,8 +10,10 @@
         {{ comment.body }}
       </li>
     </ul>
-    <v-btn @click="editPost">Edit Post</v-btn>
-    <v-btn @click="deletePost(post.id)">Delete Post</v-btn>
+    <v-btn  @click="this.$router.push({
+            path: `/post/${post.id}/edit`
+          })">Edit Post</v-btn>
+    <v-btn @click="handleDelete">Delete Post</v-btn>
   </div>
 </template>
 
@@ -28,7 +30,14 @@ export default {
     this.$store.dispatch('fetchComments', this.$route.params.id)
   },
   methods: {
-    ...mapActions(['editPost', 'deletePost'])
+    ...mapActions(['editPost', 'deletePost']),
+    handleDelete() {
+      const id = this.$route.params.id
+      if (id) {
+        this.$store.dispatch('deletePost', id)
+        this.$router.push('/')
+      }
+    }
   }
 }
 </script>

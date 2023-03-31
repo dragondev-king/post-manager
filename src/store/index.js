@@ -47,7 +47,7 @@ export default createStore({
     },
     editPost({ dispatch }, postData) {
       // Update existing post and update store by fetching posts again
-      axios.put(`/api/posts/${postData.id}`, postData).then(() => {
+      axios.put(`${apiURL}/${postData.id}`, postData).then(() => {
         dispatch('fetchPosts')
       })
     },

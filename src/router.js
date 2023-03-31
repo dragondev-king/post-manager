@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import AllPosts from '@/views/AllPosts.vue'
 import CreatePost from '@/views/CreatePost.vue'
 import DetailPost from '@/views/DetailPost.vue'
-
+import EditPost from '@/views/EditPost.vue'
 
 
 const router = createRouter({
@@ -18,8 +18,13 @@ const router = createRouter({
     },
     {
       path: '/post/:id',
-      name: 'post',
+      name: 'view',
       component: DetailPost
+    },
+    {
+      path: '/post/:id/edit',
+      name: 'edit',
+      component: EditPost
     },
     {
       path: '/create',
