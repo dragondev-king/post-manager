@@ -1,16 +1,16 @@
 <template>
   <v-sheet>
     <h1>Edit Post</h1>
-    <v-form validate-on="submit" @submit.prevent="saveChanges">
-      <v-text-field v-model="title" label="Title" :rules="titleRules" ></v-text-field>
+    <v-form validate-on="submit" @submit.prevent="saveChanges(title, body)">
+      <v-text-field v-model="title" label="Title" :rules="titleRules"></v-text-field>
       <v-textarea label="Body" v-model="body" :rules="bodyRules"></v-textarea>
       <v-btn type="submit">Save</v-btn>
     </v-form>
-    {{ posts }}
   </v-sheet>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -26,34 +26,38 @@ export default {
     }
   },
   computed: {
-    
+    ...mapState([
+      'post'
+    ])
   },
   created() {
-    // Get the post ID from the URL and fetch the corresponding post
-    const postId = this.$route.params.id
-    const post = this.$store.state.posts.find(post => post.id === postId)
-    if (post) {
-      this.title = post.title
-      this.body = post.body
-    } else {
-      // If the post doesn't exist, redirect to Home page
-      this.$router.push('/')
+    this.$store.dispatch('fetchPost', this.$route.params.id)
+  },
+  watch: {
+    '$store.state.post': {
+      handler() {
+        this.title = this.post.title
+        this.body = this.post.body
+      }
     }
   },
   methods: {
-    saveChanges() {
+    ...mapActions([
+      'fetchPost'
+    ]),
+    saveChanges(title, body) {
       // Update the post and redirect to Home page
       const id = this.$route.params.id
-      const title = this.title
-      const body = this.body
       const post = {
         id,
         title,
-        body
+        body,
+        userId: 1
       }
-      if (id && title && body)
-      this.$store.dispatch('editPost', post)
-      this.$router.push('/')
+      if (id && title && body) {
+        this.$store.dispatch('editPost', post)
+        this.$router.push('/')
+      }
     }
   },
 }
