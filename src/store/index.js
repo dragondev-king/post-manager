@@ -38,11 +38,12 @@ export default createStore({
       })
     },
     createPost({ dispatch }, postData) {
-      console.log(postData, '-=====')
       // Create new post and update store by fetching posts again
-      axios.post(`${apiURL}/posts`, postData).then(() => {
-        dispatch('fetchPosts')
-      })
+      if (postData.title && postData.body) {
+        axios.post(`${apiURL}/posts`, postData).then(() => {
+          dispatch('fetchPosts')
+        })
+      }
     },
     editPost({ dispatch }, postData) {
       // Update existing post and update store by fetching posts again

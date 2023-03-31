@@ -1,13 +1,13 @@
 <template>
   <v-sheet>
     <h1>Create New Post</h1>
-    <v-form @submit.prevent="createPost({
+    <v-form validate-on="submit" @submit.prevent="createPost({
       title,
       body,
       userId: 1
     })">
-      <v-text-field v-model="title" label="Title"></v-text-field>
-      <v-textarea label="Body" v-model="body"></v-textarea>
+      <v-text-field v-model="title" label="Title" :rules="titleRules" ></v-text-field>
+      <v-textarea label="Body" v-model="body" :rules="bodyRules"></v-textarea>
       <v-btn type="submit">Create Post</v-btn>
     </v-form>
   </v-sheet>
@@ -20,7 +20,13 @@ export default {
   data() {
     return {
       title: '',
-      body: ''
+      titleRules: [
+        value => value ? true : 'Title is required'
+      ],
+      body: '',
+      bodyRules: [
+        value => value ? true : 'Body is required'
+      ]
     }
   },
   methods: {
