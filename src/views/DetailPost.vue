@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>ID : {{ post.id }}</h2>
     <h2>Title</h2>
     <h3>{{ post.title }}</h3>
     <h2>Description</h2>
@@ -10,10 +11,12 @@
         {{ comment.body }}
       </li>
     </ul>
-    <v-btn  @click="this.$router.push({
-            path: `/post/${post.id}/edit`
-          })">Edit Post</v-btn>
-    <v-btn @click="handleDelete">Delete Post</v-btn>
+    <div class="pt-4">
+      <v-btn  @click="this.$router.push({
+              path: `/post/${post.id}/edit`
+            })">Edit Post</v-btn>
+      <v-btn class="ml-2" @click="handleDelete">Delete Post</v-btn>
+    </div>
   </div>
 </template>
 

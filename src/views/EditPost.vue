@@ -1,6 +1,7 @@
 <template>
   <v-sheet>
     <h1>Edit Post</h1>
+    <h2>ID : {{ post.id }}</h2>
     <v-form validate-on="submit" @submit.prevent="saveChanges(title, body)">
       <v-text-field v-model="title" label="Title" :rules="titleRules"></v-text-field>
       <v-textarea label="Body" v-model="body" :rules="bodyRules"></v-textarea>
