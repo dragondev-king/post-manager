@@ -1,4 +1,5 @@
 # posts
+![image](https://user-images.githubusercontent.com/95838192/230607895-5442e188-6774-4b9d-b936-f440f7aff233.png)
 
 ## Project setup
 ```
